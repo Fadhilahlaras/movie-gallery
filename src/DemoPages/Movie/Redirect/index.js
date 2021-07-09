@@ -7,6 +7,7 @@ import Upcoming from "../Home/upcoming";
 import Nowplaying from "../Home/nowplaying";
 import Completed from "../Home/completed";
 import HomePage from "../Home";
+import Deskripsi from "../DeskripsiMovies";
 import {Route} from "react-router-dom";
 import Table from "../../Movie/Tabel/NewTable";
 
@@ -32,6 +33,8 @@ const Home = ({match}) => {
                         <Route path={`${match.url}/now-playing`} component={Nowplaying}/>
 
                         <Route path={`${match.url}/completed`} component={Completed}/>
+
+                        <Route path={`${match.url}/deskripsi`} component={Deskripsi} />
 
                         <Route path={`${match.url}/table`} component={Table} />
 

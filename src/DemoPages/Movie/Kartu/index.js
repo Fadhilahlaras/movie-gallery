@@ -2,9 +2,14 @@ import React, {Component, Fragment, useEffect, useState} from 'react';
 import {Card, CardBody, CardImg, CardSubtitle, CardTitle, Col, CardFooter, Button, CardText} from "reactstrap";
 import axios from "axios";
 
+import AddToCard from "../ModalMovies/AddToCart"
+import {Link} from "react-router-dom";
+
 
 const ThisCardMovie = (props) => {
     const [img, setImg] = useState("")
+
+    const [addToCartModal, setAddToCartModal] = useState("")
 
     useEffect(() => {
             axios.get('http://localhost:1818/api/movies/getImage/' + props.id).then(res => {
@@ -13,16 +18,17 @@ const ThisCardMovie = (props) => {
         }, []
     )
 
-    // const toggleAddToCart = () => {
-    //     setAddToCartModal(!addToCartModal)
-    //     onSubmit();
-    // }
-    //
-    // const onChangeToggleAddToCart = () => {
-    //     setAddToCartModal(!addToCartModal)
-    // }
-    //
-    //
+
+    const toggleAddToCart = () => {
+        setAddToCartModal(!addToCartModal)
+        // onSubmit();
+    }
+
+    const onChangeToggleAddToCart = () => {
+        setAddToCartModal(!addToCartModal)
+    }
+
+
     // const onSubmit = () => {
     //     const formData = new FormData();
     //
@@ -30,8 +36,7 @@ const ThisCardMovie = (props) => {
     //         "addToCart": [
     //             {
     //                 "id": props.id,
-    //                 "idProduct": props.id,
-    //                 "productQuantity": 1,
+    //                 "idMovie": props.id,
     //                 "idUser" : 1
     //             }
     //         ]
@@ -45,7 +50,7 @@ const ThisCardMovie = (props) => {
     //
     //
     //     console.log(formData)
-    //     axios.post("http://localhost:1717/api/cart", json)
+    //     axios.post("http://localhost:1818/api/like", json)
     //         .then(res => console.log(res.data))
     //
     // }
@@ -67,11 +72,14 @@ const ThisCardMovie = (props) => {
                         </CardText>
                     </CardBody>
                     <CardFooter>
-                    {/*    <Button style={{margin:"auto"}}color="warning" type="button" onClick={()=>toggleAddToCart()}>Add to Cart</Button>*/}
+                        {/*<Button style={{margin:"auto"}}color="warning" type="button" onClick={()=>toggleAddToCart()}>Like This</Button>*/}
+                        {/*<Link to="/movies/deskripsi" style={{textDecoration: "none"}}>*/}
+                            <Button style={{margin:"auto"}}color="warning" type="button" onClick={()=>toggleAddToCart()}>More Info</Button>
+                        {/*</Link>*/}
                     </CardFooter>
-                    {/*<AddToCard toggle={() => {*/}
-                    {/*    toggleAddToCart()*/}
-                    {/*}} modal={addToCartModal} onChangeToggle={onChangeToggleAddToCart}/>*/}
+                    <AddToCard toggle={() => {
+                        toggleAddToCart()
+                    }} modal={addToCartModal} onChangeToggle={onChangeToggleAddToCart}/>
 
                 </Card>
             </Col>

@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
-import logo from '../../assets/utils/images/daily-you.png';
+import logo from '../../assets/utils/images/green_app_icon.svg';
 
 
 import {
@@ -45,7 +45,7 @@ class HeaderLogo extends React.Component {
                         if (localStorage.getItem("roles") === null) {
                             return (
                                 <Link to={"/home/dashboard"}>
-                                    <img style={{paddingLeft:"40px"}} src={logo} sizes={1} route="/home/dashboard"/>
+                                    <img style={{paddingLeft:"30px"}} alt="app icon" width="90" src={logo} route="/home/dashboard"/>
                                 </Link>
                             )
                         } else if (localStorage.getItem("roles").includes("ROLE_ADMIN")) {

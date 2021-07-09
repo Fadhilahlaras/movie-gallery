@@ -49,6 +49,7 @@ class Header extends React.Component {
 
 
                         <div className="app-header-right">
+                            <SearchBox/>
                             <UserBox/>
                         </div>
                     </div>
