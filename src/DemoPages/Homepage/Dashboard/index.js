@@ -2,10 +2,9 @@ import React, {Fragment, useEffect, useState} from "react";
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 // import AppHeader from "../../../Layout/AppHeader"
 import {Row, CardBody} from "reactstrap";
-import Carousel from "../Carousel/index";
 import bg1 from "../../../assets/utils/images/originals/city.jpg";
 import axios from "axios";
-import Kartu from "../../Product/Kartu"
+import Kartu from "../../Movie/Kartu";
 
 const Dashboard = () => {
     console.log("udah ada")
@@ -13,7 +12,7 @@ const Dashboard = () => {
     let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:1717/api/product").then(res => {
+        axios.get("http://localhost:1818/api/movies").then(res => {
             setDataCard(res.data)
 
             console.log(res.data)
@@ -46,29 +45,29 @@ const Dashboard = () => {
                                     <div className="slider-content" style={{
                                         color: "white"
                                     }}>
-                                        <h3>Daily You</h3>
-                                        <p>
-                                            Daily You is like a dream. Some think it's too good to be true! .
-                                        </p>
+                                        <h3>Welcome.</h3>
+                                        <h4>
+                                            Millions of movies, TV shows and people to discover. Explore now.
+                                        </h4>
                                     </div>
                                 </div>
                             </CardBody>
                             {/*</Col>*/}
                         </Row>
-                        <Row>
-                            <CardBody>
-                                <Carousel/>
-                            </CardBody>
-                        </Row>
+                        {/*<Row>*/}
+                        {/*    <CardBody>*/}
+                        {/*        <Carousel/>*/}
+                        {/*    </CardBody>*/}
+                        {/*</Row>*/}
 
                         <Row>
-                            <h3 style={{margin: "auto", marginBottom:"20px"}}> All Products </h3>
+                            <h3 style={{margin: "40px", marginBottom:"20px"}}> What's Popular </h3>
                         </Row>
                         <Row>
                             {dataCard.map((card, index) => (
-                                <Kartu key={index} id={card.id} title={card.productName}
-                                       category={card.categoryName}
-                                       stock={card.stock} price={card.price}
+                                <Kartu key={index} id={card.id} title={card.moviesName}
+                                       category={card.categoryMovies}
+                                       year={card.year} description={card.description}
                                        image={imageArrayPath[index]}/>
                             ))}
 

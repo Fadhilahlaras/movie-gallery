@@ -4,12 +4,12 @@ import {Button, CardTitle, Form, FormGroup, Input, Label, Modal, ModalBody, Moda
 import {IoIosSettings} from "react-icons/io";
 import Select from "react-select";
 
-const AddProduct = (props) => {
+const AddTv = (props) => {
     const [idCategory, setIdCategory] = useState(0)
     const [selectOptions, setSelectOptions] = useState([]);
-    const [productName, setProductName] = useState("");
-    const [stock, setStock] = useState(0);
-    const [price, setPrice] = useState(0);
+    const [tvshowsName, setTvshowsName] = useState("");
+    const [year, setYear] = useState(0);
+    const [description, setDescription] = useState(0);
     const [picture, setPicture] = useState();
     const [img, setImg] = useState()
 
@@ -17,10 +17,10 @@ const AddProduct = (props) => {
 
         const formData = new FormData();
         const json = JSON.stringify({
-            "productName": productName,
+            "tvshowsName": tvshowsName,
             "idCategory": idCategory,
-            "stock": stock,
-            "price": price,
+            "year": year,
+            "description": description,
         });
         const blobDoc = new Blob([json], {
             type: 'application/json'
@@ -33,7 +33,7 @@ const AddProduct = (props) => {
                 'content-type': 'multipart/mixed'
             }
         }
-        axios.post("http://localhost:1717/api/product/save", formData, config)
+        axios.post("http://localhost:1818/api/tvshows/save", formData, config)
             .then(props.tampil).catch()
 
         props.onChangeToggle(false)
@@ -50,13 +50,13 @@ const AddProduct = (props) => {
 
     const getOptions = () => {
         console.log("why im not around")
-        axios.get('http://localhost:1717/api/productcategory', {
+        axios.get('http://localhost:1818/api/tvshowscategory', {
             headers: {'Content-Type': 'application/json'}
         }).then(res => {
             const data = res.data;
             const options = data.map(d => ({
                 "value": d.id,
-                "label": d.categoryName
+                "label": d.categoryTvshows
 
             }));
             setSelectOptions(options)
@@ -75,18 +75,18 @@ const AddProduct = (props) => {
         <>
             <span className="d-inline-block mb-2 mr-2">
                  <Modal isOpen={props.modal} toggle={props.toggle}>
-                        <ModalHeader toggle={props.toggle}>Input Product Data</ModalHeader>
+                        <ModalHeader toggle={props.toggle}>Input TV Shows Data</ModalHeader>
                         <ModalBody>
                             <Form>
                                 <FormGroup>
-                                    <Label for="name">Product Name</Label>
+                                    <Label for="name">TV Shows Name</Label>
                                     <Input type="text" name="name" id="name"
-                                           placeholder="Input Name of Product" onChange={(e) => {
-                                        setProductName(e.target.value)
+                                           placeholder="Input Name of TV Shows" onChange={(e) => {
+                                        setTvshowsName(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label for="category">Category Product</Label>
+                                    <Label for="category">Category TV Shows</Label>
                                     <Select name="idCategory" id="idCategory"
                                             options={selectOptions}
                                         // onChange={handleChangeSelect.bind(this)}
@@ -94,23 +94,23 @@ const AddProduct = (props) => {
                                     />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label for="stock">Stock</Label>
-                                    <Input type="number" name="stock" id="stock"
-                                           placeholder="Input Stock of Product" onChange={(e) => {
-                                        setStock(e.target.value)
+                                    <Label for="year">Year</Label>
+                                    <Input type="datetime" name="year" id="year"
+                                           placeholder="Input Year of TV Shows" onChange={(e) => {
+                                        setYear(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label for="price">Price</Label>
-                                    <Input type="text" name="price" id="price"
-                                           placeholder="Input Price of Product" onChange={(e) => {
-                                        setPrice(e.target.value)
+                                    <Label for="description">Description</Label>
+                                    <Input type="textarea" name="description" id="description"
+                                           placeholder="Input Description of Movies" onChange={(e) => {
+                                        setDescription(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label>Picture of Product</Label>
+                                    <Label>Picture of TV Shows</Label>
                                     <Input type="file" name="picture" id="picture" accepts="image/*"
-                                           placeholder="Input Picture of Product"
+                                           placeholder="Input Picture of TV Shows"
                                            onChange={(e) => {
                                                imagePreview(e)
                                            }}
@@ -135,4 +135,4 @@ const AddProduct = (props) => {
     )
 }
 
-export default AddProduct;
+export default AddTv;

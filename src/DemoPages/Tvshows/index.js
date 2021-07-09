@@ -6,12 +6,12 @@ import {
     ToastContainer,
 } from 'react-toastify';
 
-const Product = lazy(() => import('../Product/Redirect'));
+const Tvshows = lazy(() => import('../Tvshows/Redirect'));
+
 const AppMain = () => {
 
     return (
         <Fragment>
-            {/*Products*/}
             <Suspense fallback={
                 <div className="loader-container">
                     <div className="loader-container-inner">
@@ -19,18 +19,18 @@ const AppMain = () => {
                             <Loader type="ball-grid-cy"/>
                         </div>
                         <h6 className="mt-3">
-                            You are redirecting to Products
-                            <small>Happy Shopping!</small>
+                            You are redirecting to All List Tv Shows
+                            <small>Happy Watching!</small>
                         </h6>
                     </div>
                 </div>
             }>
-                <Route path="/product" component={Product}/>
+                <Route path="/tvshows" component={Tvshows}/>
             </Suspense>
 
 
             <Route exact path="/" render={() => (
-                <Redirect to="/product/home"/>
+                <Redirect to="/tvshows/home"/>
             )}/>
             <ToastContainer/>
         </Fragment>

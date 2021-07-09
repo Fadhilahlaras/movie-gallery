@@ -43,7 +43,7 @@ const TableMember = () => {
     const tampil = () =>{
 
 
-        axios.get("http://localhost:1717/team")
+        axios.get("http://localhost:1818/team")
             .then(res => {
                 setDataTable(res.data)
                 console.log(dataTable)
@@ -64,17 +64,17 @@ const TableMember = () => {
         setModalEdit(!modalEdit)
         console.log('Show modal edit', val)
 
-        axios.get('http://localhost:1717/team/' + val).then(res => {
+        axios.get('http://localhost:1818/team/' + val).then(res => {
             setDataa(res.data)
         })
-        axios.get("http://localhost:1717/team/getImage/" + val).then(res => {
+        axios.get("http://localhost:1818/team/getImage/" + val).then(res => {
             setPictureUrl(res.data)
         }).catch()
     }
 
     const deleteData = (id) => {
         console.log("hai hapus ya")
-        axios.delete('http://localhost:1717/team/' + id).then(tampil).catch(err => console.log(err))
+        axios.delete('http://localhost:1818/team/' + id).then(tampil).catch(err => console.log(err))
         setDel(id)
         onChangeToggleDelete(false)
     }
@@ -94,7 +94,7 @@ const TableMember = () => {
     // const getPDF = async () => {
     //
     //     await axios({
-    //         url: 'http://localhost:1717/getReport',
+    //         url: 'http://localhost:1818/getReport',
     //         method: 'GET',
     //         responseType: 'blob', // important
     //     }).then((response) => {
@@ -111,7 +111,7 @@ const TableMember = () => {
     //
     // const getEXCEL = async () => {
     //     await axios({
-    //         url: 'http://localhost:1717/getReportExcel',
+    //         url: 'http://localhost:1818/getReportExcel',
     //         method: 'GET',
     //         responseType: 'blob', // important
     //     }).then((response) => {

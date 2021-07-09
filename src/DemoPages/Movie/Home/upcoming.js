@@ -5,59 +5,30 @@ import AppHeader from "../../../Layout/AppHeader/index";
 import {Col, Row} from "reactstrap";
 import ThisCard from "../Kartu";
 import axios from "axios";
-import Image from "../../Components/GuidedTours/Examples/Image";
 import bg1 from "../../../assets/utils/images/originals/city.jpg";
 
-const SkinCare = () => {
+const Upcoming = () => {
     console.log("udah ada")
     const [dataCard, setDataCard] = useState([])
-    // const [images, setimages] = useState([])
-    // let imageArrayPath = [];
+    let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:1717/api/product/category/2").then(res => {
+        axios.get("http://localhost:1818/api/movies/category/2").then(res => {
             setDataCard(res.data)
 
+            console.log(imageArrayPath)
         })
     }, [])
 
     // useEffect(() => {
     //     dataCard.map((data, index) => {
-    //         axios.get('http://localhost:1717/api/product/getImage/' + data.id).then(res => {
-    //             setimages(res.data)
-    //             // console.log(res.data)
+    //         axios.get('http://localhost:1818/api/product/getImage/' + data.id).then(res => {
+    //             imageArrayPath.push(res.data)
+    //             console.log(res.data)
     //             console.log("udah ada")
     //         })
     //     })
     // })
-
-    // function showImage() {
-    //     return images.map((img, index) => (
-    //         <Image
-    //             image={img.urls.regular}
-    //             index={index}
-    //             key={index}/>
-    //     ))
-    // };
-
-    {/*async function getGambar() {*/}
-    {/*    dataCard.map((data, index) => {*/}
-    {/*        axios({*/}
-    {/*            url: 'http://localhost:1717/api/product/getImage/' + data.id,*/}
-    {/*            method: 'GET',*/}
-    {/*            responseType: 'blob', // important*/}
-    //         }).then((response) => {
-    //             const url = window.URL.createObjectURL(new Blob([response.data]));
-    //             const link = document.createElement('img');
-    //             console.log(url);
-    //             console.log("ini link" + link);
-    //             link.src = url;
-    //             // link.setAttribute('download', 'file.pdf');
-    //             return link.src
-    //         });
-    //     })
-    // }
-
 
     return (
         <Fragment>
@@ -83,7 +54,7 @@ const SkinCare = () => {
                             <div className="slider-content" style={{
                                 color: "white", textAlign: "center"
                             }}>
-                                <h3>Skin Care</h3>
+                                <h3>Upcoming Movies</h3>
                             </div>
                         </div>
 
@@ -92,8 +63,8 @@ const SkinCare = () => {
                 </Row>
                 <Row>
                     {dataCard.map((card, index) => (
-                        <ThisCard key={index} id={card.id} title={card.productName} category={card.categoryName}
-                                  stock={card.stock} price={card.price}/>
+                        <ThisCard key={index} id={card.id} title={card.moviesName} categoryMovies={card.categoryMovies}
+                                  year={card.year} description={card.description}/>
                     ))}
                 </Row>
             </CSSTransitionGroup>
@@ -102,4 +73,4 @@ const SkinCare = () => {
 }
 
 
-export default SkinCare;
+export default Upcoming;

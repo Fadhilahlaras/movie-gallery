@@ -18,9 +18,9 @@ const Edit = (props) => {
     // console.log("data:/image/*;base64," + props.pictureUrl)
     const [idCategory, setIdCategory] = useState(props.data.idCategory)
     const [selectOptions, setSelectOptions] = useState([]);
-    const [productName, setProductName] = useState(props.data.productName);
-    const [stock, setStock] = useState(props.data.stock);
-    const [price, setPrice] = useState(props.data.price);
+    const [tvshowsName, setTvshowsName] = useState(props.data.tvshowsName);
+    const [year, setYear] = useState(props.data.year);
+    const [description, setDescription] = useState(props.data.description);
     const [pictureUrl, setPictureUrl] = useState(props.data.pictureUrl);
     const [img, setImg] = useState(
         "data:/image/*;base64," + props.pictureUrl
@@ -31,10 +31,10 @@ const Edit = (props) => {
         const formData = new FormData();
         const json = JSON.stringify({
             "id": props.data.id,
-            "productName": productName == null ? props.data.productName : productName,
+            "tvshowsName": tvshowsName == null ? props.data.tvshowsName : tvshowsName,
             "idCategory": idCategory == null ? props.data.idCategory : idCategory,
-            "stock": stock == null ? props.data.stock : stock,
-            "price": price == null ? props.data.price : price
+            "year": year == null ? props.data.year : year,
+            "description": description == null ? props.data.description : description
         });
         const blobDoc = new Blob([json], {
             type: 'application/json'
@@ -48,8 +48,8 @@ const Edit = (props) => {
                 'content-type': 'multipart/mixed'
             }
         }
-        console.log("ini adalah "+ price)
-        axios.post("http://localhost:1717/api/product/save", formData, config)
+
+        axios.post("http://localhost:1818/api/movies/save", formData, config)
             .then(()=>{tampil()})
 
         props.onChangeToggle(false)
@@ -65,13 +65,13 @@ const Edit = (props) => {
     const tampil = () =>{props.tampil()}
 
     const getOptions = () => {
-        axios.get('http://localhost:1717/api/productcategory', {
+        axios.get('http://localhost:1818/api/tvshowscategory', {
             headers: {'Content-Type': 'application/json'}
         }).then(res => {
             const data = res.data;
             const options = data.map(d => ({
                 "value": d.id,
-                "label": d.categoryName
+                "label": d.categoryTvshows
 
             }));
             setSelectOptions(options)
@@ -91,26 +91,26 @@ const Edit = (props) => {
     return (
         <span className="d-inline-block mb-2 mr-2">
                 <Modal isOpen={props.modal} toggle={props.toggle} className={props.className}>
-                    <ModalHeader toggle={props.toggle}>Edit Product</ModalHeader>
+                    <ModalHeader toggle={props.toggle}>Edit TV Shows Data</ModalHeader>
                     <ModalBody>
                         <Card className="main-card mb-3">
                                     <CardBody>
-                                        <CardTitle>Input Product Data</CardTitle>
+                                        <CardTitle>Input TV Shows Data</CardTitle>
                                         <Form>
                                 <FormGroup>
-                                    <Label for="productName">Product Name </Label>
-                                    <Input type="text" name="productName" id="productName"
-                                           placeholder={props.data.productName}
+                                    <Label for="tvshowsName">TV Shows Name </Label>
+                                    <Input type="text" name="tvshowsName" id="tvshowsName"
+                                           placeholder={props.data.tvshowsName}
                                         // value={productName == null ?  props.data.productName : productName}
                                            onChange={(e) => {
-                                               setProductName(e.target.value)
+                                               setTvshowsName(e.target.value)
                                            }}/>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label for="idCategory">Category Product</Label>
+                                    <Label for="idCategory">Category TV Shows</Label>
                                     <Select name="idCategory" id="idCategory"
                                             options={selectOptions}
-                                            placeholder={props.data.categoryName}
+                                            placeholder={props.data.categoryTvshows}
                                         // onChange={handleChangeSelect.bind(this)}
                                             onChange={(e) => {
                                                 setIdCategory(e.value)
@@ -118,23 +118,23 @@ const Edit = (props) => {
                                     />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label for="stock">Stock</Label>
-                                    <Input type="number" name="stock" id="stock"
-                                           placeholder={props.data.stock} onChange={(e) => {
-                                        setStock(e.target.value)
+                                    <Label for="year">Year</Label>
+                                    <Input type="datetime" name="year" id="year"
+                                           placeholder={props.data.year} onChange={(e) => {
+                                        setYear(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label for="price">Price</Label>
-                                    <Input type="text" name="price" id="price"
-                                           placeholder={props.data.price} onChange={(e) => {
-                                        setPrice(e.target.value)
+                                    <Label for="description">Description</Label>
+                                    <Input type="textarea" name="description" id="description"
+                                           placeholder={props.data.description} onChange={(e) => {
+                                        setDescription(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label>Picture of Product</Label>
+                                    <Label>Picture of TV Shows</Label>
                                     <Input type="file" name="pictureUrl" id="pictureUrl"
-                                           placeholder="Input Picture of Product"
+                                           placeholder="Input Picture of TV Shows"
                                            onChange={(e) => {
                                                imagePreview(e)
                                            }}

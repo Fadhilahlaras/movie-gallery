@@ -68,7 +68,7 @@ class Login extends Component {
         }
         console.log(param)
 
-        axios.post("http://localhost:1717/auth/token",param, config)
+        axios.post("http://localhost:1818/auth/token",param, config)
             .then(res=> {
                 localStorage.setItem("access_token", res.data.data.access_token)
 

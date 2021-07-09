@@ -7,28 +7,16 @@ import ThisCard from "../Kartu";
 import axios from "axios";
 import bg1 from "../../../assets/utils/images/originals/city.jpg";
 
-const BodyCare = () => {
+const Completed = () => {
     console.log("udah ada")
     const [dataCard, setDataCard] = useState([])
-    let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:1717/api/product/category/3").then(res => {
+        axios.get("http://localhost:1818/api/tvshows/category/3").then(res => {
             setDataCard(res.data)
 
-            console.log(imageArrayPath)
         })
     }, [])
-
-    // useEffect(() => {
-    //     dataCard.map((data, index) => {
-    //         axios.get('http://localhost:1717/api/product/getImage/' + data.id).then(res => {
-    //             imageArrayPath.push(res.data)
-    //             console.log(res.data)
-    //             console.log("udah ada")
-    //         })
-    //     })
-    // })
 
     return (
         <Fragment>
@@ -54,7 +42,7 @@ const BodyCare = () => {
                             <div className="slider-content" style={{
                                 color: "white", textAlign: "center"
                             }}>
-                                <h3>Body Care</h3>
+                                <h3>Completed TV Shows</h3>
                             </div>
                         </div>
 
@@ -63,8 +51,8 @@ const BodyCare = () => {
                 </Row>
                 <Row>
                     {dataCard.map((card, index) => (
-                        <ThisCard key={index} id={card.id} title={card.productName} category={card.categoryName}
-                                  stock={card.stock} price={card.price} />
+                        <ThisCard key={index} id={card.id} title={card.tvshowsName} categoryTvshows={card.categoryTvshows}
+                                  year={card.year} description={card.description}/>
                     ))}
                 </Row>
             </CSSTransitionGroup>
@@ -73,4 +61,4 @@ const BodyCare = () => {
 }
 
 
-export default BodyCare;
+export default Completed;

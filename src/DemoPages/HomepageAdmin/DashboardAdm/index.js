@@ -5,7 +5,7 @@ import {Row, CardBody} from "reactstrap";
 import Carousel from "../Carousel/index";
 import bg1 from "../../../assets/utils/images/originals/city.jpg";
 import axios from "axios";
-import Kartu from "../../Product/Kartu"
+import Kartu from "../../Movie/Kartu";
 
 const DashboardAdm = () => {
     console.log("udah ada")
@@ -15,7 +15,7 @@ const DashboardAdm = () => {
     let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:1717/api/product").then(res => {
+        axios.get("http://localhost:1818/api/movies").then(res => {
             setDataCard(res.data)
 
             console.log(res.data)

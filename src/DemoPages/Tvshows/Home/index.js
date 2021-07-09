@@ -12,7 +12,7 @@ const Home = ({match}) => {
     let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:1717/api/product").then(res => {
+        axios.get("http://localhost:1818/api/tvshows").then(res => {
             setDataCard(res.data)
 
             console.log(imageArrayPath)
@@ -34,8 +34,8 @@ const Home = ({match}) => {
 
                 <Row>
                     {dataCard.map((card, index) => (
-                        <ThisCard key={index} id= {card.id} title={card.productName} category={card.categoryName}
-                                  stock={card.stock} price={card.price} image={imageArrayPath[index]}/>
+                        <ThisCard key={index} id= {card.id} title={card.tvshowsName} categoryTvshows={card.categoryTvshows}
+                                  year={card.year} description={card.description} image={imageArrayPath[index]}/>
                     ))}
                 </Row>
             </CSSTransitionGroup>

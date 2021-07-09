@@ -20,7 +20,7 @@ const Team = () => {
     let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:1717/team").then(res => {
+        axios.get("http://localhost:1818/team").then(res => {
             setDataCard(res.data)
         })
     }, [])

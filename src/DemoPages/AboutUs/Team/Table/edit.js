@@ -49,7 +49,7 @@ const EditMember = (props) => {
             }
         }
 
-        axios.post("http://localhost:1717/team/save", formData, config)
+        axios.post("http://localhost:1818/team/save", formData, config)
             .then(()=>{tampil()})
 
         props.onChangeToggle(false)

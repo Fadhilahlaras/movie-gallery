@@ -15,7 +15,7 @@ const CardNya = (props) => {
     const [image, setImage] = useState("")
 
     useEffect(() => {
-            axios.get("http://localhost:1717/input/getImage/" + props.id).then(res => {
+            axios.get("http://localhost:1818/input/getImage/" + props.id).then(res => {
                 setImage(res.data)
                 //console.log(imageArrayPath[index])
             })

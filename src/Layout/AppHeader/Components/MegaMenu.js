@@ -6,6 +6,7 @@ import {
 } from 'reactstrap';
 
 import bg3 from '../../../assets/utils/images/dropdown-header/abstract3.jpg';
+import bg2 from '../../../assets/utils/images/dropdown-header/city2.jpg';
 
 import {
     faAngleDown,
@@ -41,17 +42,47 @@ class MegaMenu extends React.Component {
         return (
             <Fragment>
                 <Nav className="header-megamenu">
-                    <UncontrolledDropdown nav inNavbar>
-                        <DropdownToggle nav>
-                            <i className="nav-link-icon pe-7s-gift"> </i>
-                            <Link to="/about/company" style={{textDecoration:"none"}}>About Us</Link>
-                            {/*<FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>*/}
-                        </DropdownToggle>
-                    </UncontrolledDropdown>
+
                     <UncontrolledDropdown nav inNavbar>
                         <DropdownToggle nav>
                             <i className="nav-link-icon pe-7s-gift" style={{textDecoration:"none"}}> </i>
-                            Products
+                            Movies
+                            <FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>
+                        </DropdownToggle>
+                        <DropdownMenu className="dropdown-menu-rounded dropdown-menu-lg rm-pointers">
+                            <div className="dropdown-menu-header">
+                                <div className="dropdown-menu-header-inner bg-success">
+                                    <div className="menu-header-image opacity-2"
+                                         style={{
+                                             backgroundImage: 'url(' + bg2 + ')'
+                                         }}
+                                    />
+                                    <div className="menu-header-content text-left">
+                                        <h5 className="menu-header-title">Movies</h5>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <DropdownItem>
+                                <i className="dropdown-icon pe-7s-check"> </i>
+                                <Link to="/movies/now-playing" style={{textDecoration:"none"}}>Now Playing</Link>
+                            </DropdownItem>
+                            <DropdownItem>
+                                <i className="dropdown-icon pe-7s-check"> </i>
+                                <Link to="/movies/upcoming" style={{textDecoration:"none"}}>Upcoming</Link>
+                            </DropdownItem>
+                            <DropdownItem>
+                                <i className="dropdown-icon pe-7s-check"> </i>
+                                <Link to="/movies/completed" style={{textDecoration:"none"}}>Completed</Link>
+                            </DropdownItem>
+
+                        </DropdownMenu>
+                    </UncontrolledDropdown>
+
+                    <UncontrolledDropdown nav inNavbar>
+                        <DropdownToggle nav>
+                            <i className="nav-link-icon pe-7s-gift" style={{textDecoration:"none"}}> </i>
+                            TV Shows
                             <FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-menu-rounded dropdown-menu-lg rm-pointers">
@@ -63,63 +94,27 @@ class MegaMenu extends React.Component {
                                          }}
                                     />
                                     <div className="menu-header-content text-left">
-                                        <h5 className="menu-header-title">Products Daily You</h5>
+                                        <h5 className="menu-header-title">TV Show</h5>
 
                                     </div>
                                 </div>
                             </div>
                             <DropdownItem>
                                 <i className="dropdown-icon pe-7s-check"> </i>
-                                {(() => {
-                                    if (localStorage.getItem("roles") === null) {
-                                        return (
-                                            <Link to="/pages/login">Make Up</Link>
-                                        )
-                                    } else {
-                                        return (
-                                            <Link to="/product/make-up" style={{textDecoration:"none"}}>Make Up</Link>
-                                        )
-                                    }
-                                })()}
+                                <Link to="/tvshows/now-playing" style={{textDecoration:"none"}}>Now Playing</Link>
                             </DropdownItem>
                             <DropdownItem>
                                 <i className="dropdown-icon pe-7s-check"> </i>
-                                {(() => {
-                                    if (localStorage.getItem("roles") === null) {
-                                        return (
-                                            <Link to="/pages/login">Make Up</Link>
-                                        )
-                                    } else {
-                                        return (
-                                            <Link to="/product/skin-care" style={{textDecoration:"none"}}>Skin Care</Link>
-                                        )
-                                    }
-                                })()}
+                                <Link to="/tvshows/upcoming" style={{textDecoration:"none"}}>Upcoming</Link>
                             </DropdownItem>
                             <DropdownItem>
                                 <i className="dropdown-icon pe-7s-check"> </i>
-                                {(() => {
-                                    if (localStorage.getItem("roles") === null) {
-                                        return (
-                                            <Link to="/pages/login">Make Up</Link>
-                                        )
-                                    } else {
-                                        return (
-                                            <Link to="/product/body-care" style={{textDecoration:"none"}}>Body Care</Link>
-                                        )
-                                    }
-                                })()}
+                                <Link to="/tvshows/completed" style={{textDecoration:"none"}}>Completed</Link>
                             </DropdownItem>
 
                         </DropdownMenu>
                     </UncontrolledDropdown>
-                    <UncontrolledDropdown nav inNavbar>
-                        <DropdownToggle nav>
-                            <i className="nav-link-icon pe-7s-gift"> </i>
-                            <Link to="/activities" style={{textDecoration:"none"}}>Activities</Link>
-                            {/*<FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>*/}
-                        </DropdownToggle>
-                    </UncontrolledDropdown>
+
                 </Nav>
             </Fragment>
         )

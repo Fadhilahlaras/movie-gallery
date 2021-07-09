@@ -44,7 +44,7 @@ const AddMember = (props) => {
             }
         }
 
-        axios.post("http://localhost:1717/team/save", formData, config)
+        axios.post("http://localhost:1818/team/save", formData, config)
             .then(props.tampil).catch()
 
         props.onChangeToggle(false)

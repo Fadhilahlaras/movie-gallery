@@ -7,20 +7,16 @@ import ThisCard from "../Kartu";
 import axios from "axios";
 import bg1 from "../../../assets/utils/images/originals/city.jpg";
 
-const MakeUp = () => {
+const Nowplaying = () => {
     console.log("udah ada")
     const [dataCard, setDataCard] = useState([])
-    let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:1717/api/product/category/1").then(res => {
+        axios.get("http://localhost:1818/api/tvshows/category/1").then(res => {
             setDataCard(res.data)
 
-            console.log(res.data)
         })
     }, [])
-
-
 
     return (
         <Fragment>
@@ -46,7 +42,7 @@ const MakeUp = () => {
                             <div className="slider-content" style={{
                                 color: "white", textAlign: "center"
                             }}>
-                                <h3>Make Up</h3>
+                                <h3>Now Playing TV Shows</h3>
                             </div>
                         </div>
 
@@ -55,8 +51,8 @@ const MakeUp = () => {
                 </Row>
                 <Row>
                     {dataCard.map((card, index) => (
-                        <ThisCard key={index} id= {card.id} title={card.productName} category={card.categoryName}
-                                  stock={card.stock} price={card.price} />
+                        <ThisCard key={index} id={card.id} title={card.tvshowsName} categoryTvshows={card.categoryTvshows}
+                                  year={card.year} description={card.description}/>
                     ))}
                 </Row>
             </CSSTransitionGroup>
@@ -65,4 +61,4 @@ const MakeUp = () => {
 }
 
 
-export default MakeUp;
+export default Nowplaying;

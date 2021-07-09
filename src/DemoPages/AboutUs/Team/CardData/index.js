@@ -18,7 +18,7 @@ const CardTeam = (props) => {
 
 
     useEffect(() => {
-            axios.get("http://localhost:1717/team/getImage/" + props.id).then(res => {
+            axios.get("http://localhost:1818/team/getImage/" + props.id).then(res => {
                 setImage(res.data)
                 //console.log(imageArrayPath[index])
             })

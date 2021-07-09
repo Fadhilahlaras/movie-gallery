@@ -55,7 +55,7 @@ const Register = () => {
                 timer: 1500,
             });
         } else if(password === repassword) {
-            axios.post("http://localhost:1717/register/create", variables)
+            axios.post("http://localhost:1818/register/create", variables)
                 .then((response) => {
                     console.log("Sukses isi data")
                     if (response.status === 200) {

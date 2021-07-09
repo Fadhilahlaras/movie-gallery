@@ -4,8 +4,8 @@ import {Route} from "react-router-dom";
 import DashboardAdm from "./DashboardAdm";
 
 import AppHeader2 from "../../Layout/AppHeader/index3";
-import NewTable from "../Product/Tabel/NewTable";
-import Team from "../../DemoPages/AboutUs/Team/Table";
+import TableMovies from "../Movie/Tabel/NewTable";
+import TableTvShows from "../Tvshows/Tabel/NewTable";
 
 
 const Homepage = ({ match }) => (
@@ -22,9 +22,9 @@ const Homepage = ({ match }) => (
                         {/*Dashboard Admin*/}
                         <Route path={`${match.url}/dashboardAdm`} component={DashboardAdm} />
                         {/*ManagedProduct*/}
-                        <Route path={`${match.url}/table`} component={NewTable}/>
+                        <Route path={`${match.url}/tableMovies`} component={TableMovies}/>
                         {/*Managed Team*/}
-                        <Route path={`${match.url}/team`} component={Team}/>
+                        <Route path={`${match.url}/tableTvshows`} component={TableTvShows}/>
                     </>
 
             </div>

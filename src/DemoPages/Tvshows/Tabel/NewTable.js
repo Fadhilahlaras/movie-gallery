@@ -2,9 +2,7 @@ import React, {Fragment, useEffect, useState} from 'react';
 import ReactTable from "react-table";
 import axios from "axios";
 import {
-    Row, Col,
-    Card, CardBody,
-    UncontrolledButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle, Button, CardTitle
+    Card, CardBody,Button, CardTitle
 } from 'reactstrap';
 
 // import {GetData} from "./DataProductTable/dataData"
@@ -13,9 +11,9 @@ import {
 // import PageTitle from "../../Layout/AppMain/PageTitle";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 // import Header from "../../Layout/AppHeader";
-import EditProduct from "../../Product/ModalProducts/Edit";
-import AddProduct from "../../Product/ModalProducts/AddProduct";
-import Delete from "../../Product/ModalProducts/Delete"
+import EditProduct from "../ModalTvshows/Edit";
+import AddProduct from "../ModalTvshows/AddTv";
+import Delete from "../ModalTvshows/Delete"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faFileExcel, faFilePdf, faTrash} from "@fortawesome/free-solid-svg-icons";
 
@@ -36,7 +34,7 @@ const NewTable = () => {
 
 
     const tampil = () =>{
-        axios.get("http://localhost:1717/api/product")
+        axios.get("http://localhost:1818/api/tvshows")
             .then(res => {
                 setProductData(res.data)
             }).catch();
@@ -54,10 +52,10 @@ const NewTable = () => {
     const toggleEdit = (val) => {
         setModalEdit(!modalEdit)
         console.log('toggle edit oke', val)
-        axios.get('http://localhost:1717/api/product/' + val).then(res => {
+        axios.get('http://localhost:1818/api/tvshows/' + val).then(res => {
             setDataa(res.data)
         })
-        axios.get("http://localhost:1717/api/product/getImage/" + val).then(res => {
+        axios.get("http://localhost:1818/api/tvshows/getImage/" + val).then(res => {
             setPictureUrl(res.data)
             console.log("ini itu picture"+res.data)
         }).catch()
@@ -65,7 +63,7 @@ const NewTable = () => {
 
     const deleteData = (id) => {
         console.log("hai hapus ya")
-        axios.delete('http://localhost:1717/api/product/' + id).then(
+        axios.delete('http://localhost:1818/api/tvshows/' + id).then(
             tampil
         ).catch(err => console.log(err))
         setDel(id)
@@ -82,40 +80,6 @@ const NewTable = () => {
     const onChangeToggleDelete = () => {
         setModalDelete(!modalDelete)
     }
-
-    const getPDF = async () => {
-
-        await axios({
-            url: 'http://localhost:1717/getReport',
-            method: 'GET',
-            responseType: 'blob', // important
-        }).then((response) => {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            console.log(url);
-            console.log(link);
-            link.href = url;
-            link.setAttribute('download', 'Report.pdf');
-            document.body.appendChild(link);
-            link.click();
-        });
-    };
-
-    const getEXCEL = async () => {
-        await axios({
-            url: 'http://localhost:1717/getReportExcel',
-            method: 'GET',
-            responseType: 'blob', // important
-        }).then((response) => {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'Report.xlsx');
-            document.body.appendChild(link);
-            console.log(document.body.appendChild(link))
-            link.click();
-        });
-    };
 
 
     return (
@@ -139,10 +103,10 @@ const NewTable = () => {
                     <div className="mb-3">
 
                         <CardBody>
-                            <CardTitle style={{paddingBottom:"20px"}}><h2>Data of All Products</h2></CardTitle>
+                            <CardTitle style={{paddingBottom:"20px"}}><h2>Data of All TV Shows</h2></CardTitle>
                             <Button style={{marginBottom:"20px", display:"flex", minWidth:"200px"}} color="primary" onClick={(e) => {
                                 toggleAdd()
-                            }}><p style={{margin:"auto", fontSize:"18px", textAlign:"center"}}>Add Product</p></Button>
+                            }}><p style={{margin:"auto", fontSize:"18px", textAlign:"center"}}>Add TV Shows Data</p></Button>
                             <ReactTable
                                 data={productData}
                                 filterable
@@ -168,31 +132,31 @@ const NewTable = () => {
                                         //     )
                                         // },
                                         {
-                                            Header: 'Product ID',
+                                            Header: 'TV Shows ID',
                                             accessor: 'id',
                                         },
                                         {
-                                            Header: 'Product Name',
-                                            accessor: 'productName',
+                                            Header: 'TV Shows Category',
+                                            accessor: 'categoryTvshows',
                                         },
                                         {
-                                            Header: 'Stock',
-                                            accessor: 'stock',
+                                            Header: 'TV Shows Name',
+                                            accessor: 'tvshowsName',
                                         },
                                         {
-                                            Header: 'Price',
-                                            accessor: 'price',
+                                            Header: 'Year',
+                                            accessor: 'year',
+                                        },
+                                        {
+                                            Header: 'Description',
+                                            accessor: 'description',
                                         },
                                         {
                                             Header: 'Picture',
                                             accessor: 'pictureUrl',
                                             // Cell: row => (
-                                            //     <img src={getAllImage(row.original.id)}/>
+                                            //     <img src={"data:image/*;base64," + image(row.original.id)}/>
                                             // )
-                                        },
-                                        {
-                                            Header: 'Product Category',
-                                            accessor: 'categoryName',
                                         },
                                     ]
                                 },
@@ -230,18 +194,7 @@ const NewTable = () => {
                                 defaultPageSize={10}
                                 className="-striped -highlight"
                             />
-                            <CardTitle style={{fontSize: "18px"}}><br/>Download the report of all products
-                                uploaded:<br/></CardTitle>
 
-                            <br/>
-                            <Button type="button" className="mt-1" color="danger"
-                                    onClick={getPDF} style={{fontSize: "20px", margin: "5px"}}>
-                                <FontAwesomeIcon icon={faFilePdf}/> <span style={{fontSize: "15px"}}>PDF</span>
-                            </Button>
-                            <Button type="button" className="mt-1" color="success"
-                                    onClick={getEXCEL} style={{fontSize: "20px", margin: "5px"}}>
-                                <FontAwesomeIcon icon={faFileExcel}/> <span style={{fontSize: "15px"}}>EXCEL</span>
-                            </Button>
                         </CardBody>
                     </div>
                 </Card>

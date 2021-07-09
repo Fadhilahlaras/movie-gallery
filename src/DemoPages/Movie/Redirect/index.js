@@ -3,14 +3,12 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import AppHeader from "../../../Layout/AppHeader/index";
 
-import AddProduct from "../Form";
-import NewTable from "../Tabel/NewTable";
-
-import MakeUp from "../Home/makeup"
-import SkinCare from "../Home/skincare";
-import BodyCare from "../Home/bodycare";
+import Upcoming from "../Home/upcoming";
+import Nowplaying from "../Home/nowplaying";
+import Completed from "../Home/completed";
 import HomePage from "../Home";
 import {Route} from "react-router-dom";
+import Table from "../../Movie/Tabel/NewTable";
 
 const Home = ({match}) => {
     return (
@@ -26,22 +24,17 @@ const Home = ({match}) => {
                 <div className="app-main">
                     <div className="app-main__inner">
 
-                        {/*Form Product*/}
-                        <Route path={`${match.url}/add-product`} component={AddProduct}/>
-
-
-
                         {/*Home Product*/}
                         <Route path={`${match.url}/home`} component={HomePage}/>
 
-                        {/*Make Up Product*/}
-                        <Route path={`${match.url}/make-up`} component={MakeUp}/>
+                        <Route path={`${match.url}/upcoming`} component={Upcoming}/>
 
-                        {/*Skin Care Product*/}
-                        <Route path={`${match.url}/skin-care`} component={SkinCare}/>
+                        <Route path={`${match.url}/now-playing`} component={Nowplaying}/>
 
-                        {/*Body Care Product*/}
-                        <Route path={`${match.url}/body-care`} component={BodyCare}/>
+                        <Route path={`${match.url}/completed`} component={Completed}/>
+
+                        <Route path={`${match.url}/table`} component={Table} />
+
                     </div>
                 </div>
             </CSSTransitionGroup>

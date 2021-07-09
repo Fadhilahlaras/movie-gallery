@@ -5,6 +5,6 @@
       "DEVELOPMENT": true
     },
     "SERVICE": {
-      "DATABASE":"http://localhost:1717"
+      "DATABASE":"http://localhost:1818"
     }
   }
