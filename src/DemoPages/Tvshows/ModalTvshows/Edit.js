@@ -49,7 +49,7 @@ const Edit = (props) => {
             }
         }
 
-        axios.post("http://localhost:1818/api/movies/save", formData, config)
+        axios.post("http://localhost:1818/api/tvshows/save", formData, config)
             .then(()=>{tampil()})
 
         props.onChangeToggle(false)

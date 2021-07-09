@@ -105,14 +105,14 @@ const ModalAja = (props) => {
                                                         onChange={handleChangeSelect.bind(this)}/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <Label for="stock">Year</Label>
+                                                <Label for="year">Year</Label>
                                                 <Input type="datetime" name="year" id="year"
                                                        placeholder={data.year}
                                                        onChange={(e)=>{setYear(e.value)}}
                                                 />
                                             </FormGroup>
                                             <FormGroup>
-                                                <Label for="price">Description</Label>
+                                                <Label for="description">Description</Label>
                                                 <Input type="textarea" name="description" id="description"
                                                        placeholder={data.description}
                                                        onChange={(e)=>{setDescription(e.value)}}

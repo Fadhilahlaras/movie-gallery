@@ -3,7 +3,7 @@ import {Card, CardBody, CardImg, CardSubtitle, CardTitle, Col, CardFooter, Butto
 import axios from "axios";
 
 
-const ThisCard = (props) => {
+const ThisCardMovie = (props) => {
     const [img, setImg] = useState("")
 
     useEffect(() => {
@@ -59,7 +59,7 @@ const ThisCard = (props) => {
                              alt={props.title} style={{backgroundSize: "cover", height: "300px"}} className="mt-3"/>
                     <CardBody>
                         <CardTitle>{props.title}</CardTitle>
-                        <CardSubtitle>{props.category}
+                        <CardSubtitle>{props.categoryMovies}
                             <br/> Year {props.year}
                         </CardSubtitle>
                         <CardText>
@@ -80,4 +80,4 @@ const ThisCard = (props) => {
     )
 }
 
-export default ThisCard
+export default ThisCardMovie

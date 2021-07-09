@@ -4,12 +4,16 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import {Row, CardBody} from "reactstrap";
 import bg1 from "../../../assets/utils/images/originals/city.jpg";
 import axios from "axios";
-import Kartu from "../../Movie/Kartu";
+import KartuMovie from "../../Movie/Kartu";
+import KartuTv from "../../Tvshows/Kartu";
 
 const Dashboard = () => {
     console.log("udah ada")
     const [dataCard, setDataCard] = useState([])
     let imageArrayPath = [];
+
+    const [dataCard2, setDataCard2] = useState([])
+    let imageArrayPath2 = [];
 
     useEffect(() => {
         axios.get("http://localhost:1818/api/movies").then(res => {
@@ -17,6 +21,14 @@ const Dashboard = () => {
 
             console.log(res.data)
         })
+
+        axios.get("http://localhost:1818/api/tvshows").then(res => {
+            setDataCard2(res.data)
+
+            console.log(res.data)
+        })
+
+
     }, [])
 
     return(
@@ -54,26 +66,39 @@ const Dashboard = () => {
                             </CardBody>
                             {/*</Col>*/}
                         </Row>
-                        {/*<Row>*/}
-                        {/*    <CardBody>*/}
-                        {/*        <Carousel/>*/}
-                        {/*    </CardBody>*/}
-                        {/*</Row>*/}
+
 
                         <Row>
-                            <h3 style={{margin: "40px", marginBottom:"20px"}}> What's Popular </h3>
+                            <h3 style={{margin: "40px", marginBottom:"20px"}}> List Movie  </h3>
                         </Row>
                         <Row>
                             {dataCard.map((card, index) => (
-                                <Kartu key={index} id={card.id} title={card.moviesName}
-                                       category={card.categoryMovies}
-                                       year={card.year} description={card.description}
-                                       image={imageArrayPath[index]}/>
+                                <KartuMovie key={index} id={card.id} title={card.moviesName}
+                                            categoryMovies={card.categoryMovies}
+                                            year={card.year} description={card.description}
+                                            image={imageArrayPath[index]}/>
+                            ))}
+
+                        </Row>
+
+                        <Row>
+                            <h3 style={{margin: "40px", marginBottom:"20px"}}> List TV Show  </h3>
+                        </Row>
+                        <Row>
+                            {dataCard2.map((card, index) => (
+                                <KartuTv key={index} id={card.id} title={card.tvshowsName}
+                                         categoryTvshows={card.categoryTvshows}
+                                         year={card.year} description={card.description}
+                                         image={imageArrayPath2[index]}/>
                             ))}
 
                         </Row>
                         {/*</Card>*/}
                     </div>
+
+                    {/*<ModalHome toggle={() => {*/}
+                    {/*    toggleModalHome()*/}
+                    {/*}} modal={modalHome} onChangeToggle={()=>onChangeToggleModalHome()}/>*/}
 
                 </div>
             </CSSTransitionGroup>

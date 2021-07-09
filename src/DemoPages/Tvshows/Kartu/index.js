@@ -3,7 +3,7 @@ import {Card, CardBody, CardImg, CardSubtitle, CardTitle, Col, CardFooter, Butto
 import axios from "axios";
 
 
-const ThisCard = (props) => {
+const ThisCardTv = (props) => {
     const [img, setImg] = useState("")
 
     useEffect(() => {
@@ -40,4 +40,4 @@ const ThisCard = (props) => {
     )
 }
 
-export default ThisCard
+export default ThisCardTv

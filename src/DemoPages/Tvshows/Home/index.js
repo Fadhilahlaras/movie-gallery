@@ -3,7 +3,7 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import AppHeader from "../../../Layout/AppHeader/index";
 import {Row} from "reactstrap";
-import ThisCard from "../Kartu";
+import ThisCardTv from "../Kartu";
 import axios from "axios";
 
 const Home = ({match}) => {
@@ -34,7 +34,7 @@ const Home = ({match}) => {
 
                 <Row>
                     {dataCard.map((card, index) => (
-                        <ThisCard key={index} id= {card.id} title={card.tvshowsName} categoryTvshows={card.categoryTvshows}
+                        <ThisCardTv key={index} id= {card.id} title={card.tvshowsName} categoryTvshows={card.categoryTvshows}
                                   year={card.year} description={card.description} image={imageArrayPath[index]}/>
                     ))}
                 </Row>
