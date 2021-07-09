@@ -34,11 +34,11 @@ class AppFooter extends React.Component {
 
                         {/*</div>*/}
 
-                        {/*<div className="row">*/}
-                        {/*    <p className="col-sm" style={{color: "black"}}>*/}
-                        {/*        &copy;{new Date().getFullYear()} Daily You All rights reserved*/}
-                        {/*    </p>*/}
-                        {/*</div>*/}
+                        <div className="row">
+                            <p className="col-sm" style={{color: "black"}}>
+                                &copy;{new Date().getFullYear()} Daily You All rights reserved
+                            </p>
+                        </div>
 
 
                     {/*</div>*/}

@@ -18,12 +18,6 @@ class Header extends React.Component {
         super(props);
     }
 
-    // const username = localStorage.getItem("username")
-    //
-    // const logout = (e) => {
-    //     localStorage.clear()
-    // }
-
     render() {
         let {
             headerBackgroundColor,
@@ -49,18 +43,16 @@ class Header extends React.Component {
                         {'header-mobile-open': enableMobileMenuSmall},
                     )}>
 
+                        <div className="app-header-left">
+                            <MegaMenu/>
+                        </div>
 
-                        {/*<div className="app-header-left">*/}
-                        {/*    <MegaMenu/>*/}
-                        {/*</div>*/}
 
                         <div className="app-header-right">
-                            <MegaMenu/>
-
-                            <HeaderDots/>
                             <UserBox/>
                         </div>
                     </div>
+
                 </CSSTransitionGroup>
             </Fragment>
         );
